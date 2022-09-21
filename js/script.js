@@ -6,8 +6,8 @@ function choose_number() {
     alert("кінцеве число більше за перше ");
   for (
     chooseNumber_first;
-    chooseNumber_first < chooseNumber_last;
-    chooseNumber_first++
+    chooseNumber_first <= chooseNumber_last;
+  chooseNumber_first++
   ) {
     result += chooseNumber_first;
   }
@@ -48,18 +48,19 @@ function all_divider() {
 
 function Number_digits() {
   let x = 10;
-  let n = 1;
+  let n = 0;
   let e = 0;
   let y = +prompt("Введіть число");
-  for (; y >= x; ) {
-    e = y / x;
+  while (y != 0) {
+    e = Math.abs(y) / x;
     y = Math.floor(e);
-    if (e >= 1) {
-      ++n;
-    }
-    if (e < 1) break;
+    // if (e >= 1) {
+    ++n;
+    // }
+    // if (e < 1) break;
   }
-  console.log(`Кількість цифр ${n}`);
+    console.log(`Кількість цифр ${n}`);
+ 
 }
 
 function ten_numbers() {
@@ -89,17 +90,14 @@ function ten_numbers() {
 }
 
 function days_week() {
-  let d;
-  for (d = 1; ; ) {
-    if (d == 1) p = "Понеділок";
-    if (d == 2) p = "Вівторок";
-    if (d == 3) p = "Середа";
-    if (d == 4) p = "Четвер";
-    if (d == 5) p = "П'ятниця";
-    if (d == 6) p = "Субота";
-    if (d == 7) p = "Неділя";
-    if (confirm(`${p}. Продовжити?`) == false) break;
-    d++;
+  for (; ;) {
+    if (confirm(`Понеділок. Продовжити?`) == false) break;
+    if (confirm(`Вівторок. Продовжити?`) == false) break;
+    if (confirm(`Середа. Продовжити?`) == false) break;
+    if (confirm(`Четвер. Продовжити?`) == false) break;
+    if (confirm(`П'ятниця. Продовжити?`) == false) break;
+    if (confirm(`Субота. Продовжити?`) == false) break;
+    if (confirm(`Неділя. Продовжити?`) == false) break;
   }
 }
 
@@ -111,7 +109,9 @@ function multiplication_table() {
     for (y = 2; y <= 9; y++) {
       console.log(`${x} * ${y} = ${x * y}`);
     }
+console.log('')
   }
+
 }
 
 function calculator() {
@@ -123,24 +123,25 @@ function calculator() {
     figureFirst = +prompt("Виберіть перше число");
     arithmetic = prompt("Виберіть арифметичний знак '+', '-', '*', '/'");
     figureSecond = +prompt("Виберіть друге число");
-    // if (
-    //   arithmetic != "+" ||
-    //   arithmetic != "-" ||
-    //   arithmetic != "*" ||
-    //   arithmetic != "/"
-    // )
-    //   console.log("Виберіть арифметичний знак '+', '-', '*', '/'");
-    if (arithmetic == "+") {
-      result = figureFirst + figureSecond;
-    } else if (arithmetic == "-") {
-      result = figureFirst - figureSecond;
-    } else if (arithmetic == "/") {
-      result = figureFirst / figureSecond;
-    } else if (arithmetic == "*") {
-      result = figureFirst * figureSecond;
-    }
-    console.log(typeof (arithmetic));
-    if (confirm(`${result}. Продовжити?`) == false) break;
+    if (
+      arithmetic == "+" ||
+      arithmetic == "-" ||
+      arithmetic == "*" ||
+      arithmetic == "/"
+    ) {
+      if (arithmetic == "+") {
+        result = figureFirst + figureSecond;
+      } else if (arithmetic == "-") {
+        result = figureFirst - figureSecond;
+      } else if (arithmetic == "/") {
+        result = figureFirst / figureSecond;
+      } else if (arithmetic == "*") {
+        result = figureFirst * figureSecond;
+      }
+      console.log(typeof (result));
+      console.log(result);
+      if (confirm(`${result}. Продовжити?`) == false) break;
+    } else { continue; }
   }
 }
 
@@ -152,25 +153,23 @@ function game() {
   alert(`загадай число від 0 до 100 <,=,>`);
   for (;;) {
     x = Math.floor((b + a) / 2);
-    if (e = prompt(`Число рівне ${x} <,=,>`) == false) break;
+    e = prompt(`Число рівне ${x} <,=,>`);
     if (e == "<") {
       b = x;
-      console.log(0, x);
-    }
+          }
     if (e == ">") {
-      console.log(1, x);
-      a = x;
+            a = x;
     }
     if (x == 99 && e == ">") e = prompt(`Число рівне 100 <,=,>`);
     if (x == 1 && e == "<") e = prompt(`Число рівне 0 <,=,>`);
-    if (e == "=") break;
+    if (e == "=" || e == null) break;
       }
 }
 
 function shift_numbers() {
   let figure = +prompt("Введіть число");
-  let shiftNumbers = prompt("Введіть на скільки зсунути");
-  let x = 10;
+  let shiftNumbers = +prompt("Введіть на скільки зсунути");
+    let x = 10;
   let n = 1;
   let e = 0;
   let i;
@@ -187,7 +186,7 @@ function shift_numbers() {
   }
   if (n < shiftNumbers)
     alert("кількість цифр в числі менше за кількість, на яку потрібно ззунути");
-  else if (n == shiftNumbers) alert(`Зсунути получиться хіба так: ${figure}`);
+  else if (n == shiftNumbers || figure === 0 || shiftNumbers === 0) alert(`Зсунути получиться хіба так: ${figure}`);
   else {
     j = String(Math.floor(figure / 10 ** (n - shiftNumbers)));
     i = String(figure % 10 ** (n - shiftNumbers));
